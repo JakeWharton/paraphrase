@@ -1,0 +1,9 @@
+import com.jakewharton.paraphrase.ParaphrasePlugin
+
+apply plugin: 'android'
+apply plugin: ParaphrasePlugin
+
+android {
+  compileSdkVersion 19
+  buildToolsVersion '19.0.1'
+}
