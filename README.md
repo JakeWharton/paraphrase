@@ -1,7 +1,7 @@
 Paraphrase
 ==========
 
-A Gradle plugin which generates compile-safe format string builders.
+An experimental Gradle plugin which generates compile-safe format string builders.
 
 **Don't** write your format strings like this: :thumbsdown:
 ```xml
@@ -44,7 +44,7 @@ Build failures instead of runtime crashes!
 
 
 
-**This library is experimental, under-tested, and could use your help.**
+**This library is experimental, under-tested, and could really use your help.**
 
 Give it a whirl and send some pull requests! Inspired by [Phrase][1] and a
 [genius comment by Mark Carter][2] on its announcement.
