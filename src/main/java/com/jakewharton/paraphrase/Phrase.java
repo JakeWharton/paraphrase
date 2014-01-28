@@ -2,42 +2,53 @@ package com.jakewharton.paraphrase;
 
 import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 final class Phrase {
-  static Phrase from(String name, String string) {
-    return new Phrase(name, string, tokensFrom(string));
+  private static final Pattern PHRASE = Pattern.compile("\\{([a-z_]+)\\}");
+
+  static boolean isPhrase(String string) {
+    return PHRASE.matcher(string).find();
   }
 
-  static List<Token> tokensFrom(String string) {
-    List<Token> tokens = new ArrayList<>();
-    int index = 0;
-    char current;
-    while (index < string.length()) {
+  static Phrase from(String name, String string) {
+    return new Phrase(name, null /* TODO */, string, tokensFrom(string));
+  }
 
+  static List<String> tokensFrom(String string) {
+    List<String> tokens = new ArrayList<>();
+    Matcher matcher = PHRASE.matcher(string);
+    while (matcher.find()) {
+      tokens.add(matcher.group(1));
     }
-    return tokens;
+    Collections.sort(tokens); // Used to binary search at runtime.
+    return ImmutableList.copyOf(tokens);
   }
 
   final String name;
+  final String documentation;
   final String string;
-  final List<Token> tokens;
+  final List<String> tokens;
 
-  Phrase(String name, String string, List<Token> tokens) {
+  Phrase(String name, String documentation, String string, List<String> tokens) {
     this.name = name;
+    this.documentation = documentation;
     this.string = string;
-    this.tokens = ImmutableList.copyOf(tokens);
+    this.tokens = tokens;
   }
 
-  static final class Token {
-    final String name;
-    final int start;
-    final int end;
-
-    Token(String name, int start, int end) {
-      this.name = name;
-      this.start = start;
-      this.end = end;
-    }
+  @Override public String toString() {
+    return "Phrase{name='"
+        + name
+        + "', documentation='"
+        + documentation
+        + "' string='"
+        + string
+        + "', tokens="
+        + tokens
+        + '}';
   }
 }

@@ -22,22 +22,28 @@ class ParaphrasePlugin implements Plugin<Project> {
     }
 
     variants.all { variant ->
-      def name = variant.buildType.name
-      def outDir = new File("${project.buildDir}/phrase/${name}")
-      variant.addJavaSourceFoldersToModel outDir
-      log.debug "Paraphrase [$name] outDir: $outDir"
-
-      def phraseTaskName = "generate${name.capitalize()}Phrase"
-      def phraseTask = project.tasks.create(phraseTaskName, GenerateParaphraseClassesTask)
+      def outDir = new File("${project.buildDir}/phrase/${variant.dirName}")
+      log.debug "Paraphrase [${variant.name}] outDir: $outDir"
 
       def mergeTask = variant.mergeResources
-      def compileTask = variant.javaCompile
+      def buildConfig = variant.generateBuildConfig
+
+      def phraseTaskName = "generate${variant.name.capitalize()}Phrase"
+      def phraseTask = project.tasks.create(phraseTaskName, GenerateParaphraseClassesTask)
 
       phraseTask.resDir = mergeTask.outputDir
       phraseTask.outputDir = outDir
 
-      phraseTask.dependsOn mergeTask
-      compileTask.dependsOn phraseTask
+      // There is no easy way to get the package name so we steal it from the build config task.
+      buildConfig.doLast {
+        def packageName = buildConfig.appPackageName
+        log.debug "Paraphrase [${variant.name}] packageName: $packageName"
+        phraseTask.outputPackage = packageName
+      }
+
+      phraseTask.dependsOn mergeTask, buildConfig
+
+      variant.registerJavaGeneratingTask phraseTask, outDir
     }
   }
 }

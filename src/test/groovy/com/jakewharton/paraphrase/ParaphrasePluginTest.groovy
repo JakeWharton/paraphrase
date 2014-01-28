@@ -11,6 +11,7 @@ class ParaphrasePluginTest {
     runner.directory = new File('src/test/fixtures/simple/')
     runner.arguments << 'clean'
     runner.arguments << 'check'
+    runner.arguments << '--stacktrace'
 
     def result = runner.run()
     assertTrue result.standardOutput.contains('BUILD SUCCESSFUL')

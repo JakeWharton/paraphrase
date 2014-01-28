@@ -10,6 +10,6 @@ public class TestActivity extends Activity {
         .fox("turtle")
         .lazy("flattened")
         .dog("slug")
-        .get(this);
+        .build(this);
   }
 }
