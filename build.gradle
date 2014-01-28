@@ -1,4 +1,15 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.2'
+  }
+}
+
 apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'nexus'
 
 dependencies {
   repositories {
@@ -10,4 +21,49 @@ dependencies {
   compile 'com.android.tools.build:gradle:0.8.+'
   compile 'com.squareup:javawriter:2.4.0'
   compile 'com.google.guava:guava:16.0'
+}
+
+group = 'com.jakewharton.paraphrase'
+version = '1.0.0-SNAPSHOT'
+
+install {
+  repositories.mavenInstaller {
+    pom.artifactId = 'paraphrase'
+  }
+}
+uploadArchives {
+  repositories.mavenDeployer {
+    pom.artifactId = 'paraphrase'
+  }
+}
+
+modifyPom {
+  project {
+    name 'Paraphrase'
+    description "Gradle plugin which generates compile-safe format string builders."
+    url 'https://github.com/JakeWharton/paraphrase'
+    inceptionYear '2014'
+
+    scm {
+      url 'https://github.com/JakeWharton/paraphrase'
+      connection 'scm:git:git://github.com/JakeWharton/paraphrase.git'
+      developerConnection 'scm:git:ssh://git@github.com/JakeWharton/paraphrase.git'
+    }
+
+    licenses {
+      license {
+        name 'The Apache Software License, Version 2.0'
+        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+        distribution 'repo'
+      }
+    }
+
+    developers {
+      developer {
+        id 'jakewharton'
+        name 'Jake Wharton'
+        email 'jakewharton@gmail.com'
+      }
+    }
+  }
 }

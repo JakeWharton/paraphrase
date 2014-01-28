@@ -57,11 +57,10 @@ Usage
 Apply the plugin in your `build.gradle`:
 ```groovy
 buildscript {
+  repositories {
+    mavenCentral()
+  }
   dependencies {
-    repositories {
-      mavenCentral()
-    }
-
     classpath 'com.android.tools.build:gradle:0.8.+'
     classpath 'com.jakewharton.paraphrase:paraphrase:1.0.+'
   }
