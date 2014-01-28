@@ -28,7 +28,7 @@ final class ParaphraseWriter {
   }
 
   void write(String packageName, List<Phrase> phrases) throws IOException {
-    String filePath = packageName.replace('.', File.separatorChar) + "/" + PHRASE_CLASS + ".java";
+    String filePath = packageName.replace('.', File.separatorChar) + File.separator + PHRASE_CLASS + ".java";
 
     File file = new File(outputDir, filePath);
     file.getParentFile().mkdirs();
