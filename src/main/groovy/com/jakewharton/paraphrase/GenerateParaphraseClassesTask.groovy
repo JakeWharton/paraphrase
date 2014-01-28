@@ -1,4 +1,5 @@
 package com.jakewharton.paraphrase
+
 import com.android.resources.ResourceType
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.InputDirectory
@@ -18,8 +19,6 @@ class GenerateParaphraseClassesTask extends DefaultTask {
           .findAll { it.type == ResourceType.STRING }
           .findAll { Phrase.isPhrase it.value.firstChild.nodeValue }
           .collect { Phrase.from it.name, it.value.firstChild.nodeValue }
-
-      items.each { println it }
 
       new ParaphraseWriter(outputDir).write(outputPackage, items)
     }
