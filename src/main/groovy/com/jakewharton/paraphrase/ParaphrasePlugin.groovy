@@ -38,7 +38,7 @@ class ParaphrasePlugin implements Plugin<Project> {
       buildConfig.doLast {
         def packageName = buildConfig.appPackageName
         log.debug "Paraphrase [${variant.name}] packageName: $packageName"
-        phraseTask.outputPackage = packageName
+        phraseTask.packageName = packageName
       }
 
       phraseTask.dependsOn mergeTask, buildConfig
