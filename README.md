@@ -46,8 +46,8 @@ Build failures instead of runtime crashes! :thumbsup: :thumbsup: :thumbsup:
 
 **This library is experimental, under-tested, and could really use your help.**
 
-Give it a whirl and send some pull requests! Inspired by [Phrase][1] and a
-[genius comment by Mark Carter][2] on its announcement.
+Give it a whirl and send some pull requests! Inspired by [Phrase][1] (which you should use if this
+plugin fails you miserably) and a [genius comment by Mark Carter][2] on its announcement.
 
 
 
