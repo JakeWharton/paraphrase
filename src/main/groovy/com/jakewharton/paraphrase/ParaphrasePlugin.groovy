@@ -22,7 +22,7 @@ class ParaphrasePlugin implements Plugin<Project> {
     }
 
     variants.all { variant ->
-      def outDir = new File("${project.buildDir}/phrase/${variant.dirName}")
+      def outDir = new File("${project.buildDir}/paraphrase/${variant.dirName}")
       log.debug "Paraphrase [${variant.name}] outDir: $outDir"
 
       def mergeTask = variant.mergeResources
