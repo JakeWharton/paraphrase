@@ -54,17 +54,19 @@ Give it a whirl and send some pull requests! Inspired by [Phrase][1] and a
 Usage
 -----
 
-*Note:* Currently only deployed as `1.0.0-SNAPSHOT` to Sonatype. Adjust the following accordingly.
+*Note:* Currently only deployed as `1.0.0-SNAPSHOT` for experimentation. Subject to API changes.
+A release will come soon once I verify the code isn't absolutely terrible.
 
 Apply the plugin in your `build.gradle`:
 ```groovy
 buildscript {
   repositories {
     mavenCentral()
+    maven url: 'http://oss.sonatype.org/content/repositories/snapshots/'
   }
   dependencies {
     classpath 'com.android.tools.build:gradle:0.8.+'
-    classpath 'com.jakewharton.paraphrase:paraphrase:1.0.+'
+    classpath 'com.jakewharton.paraphrase:paraphrase:1.0.0-SNAPSHOT'
   }
 }
 
