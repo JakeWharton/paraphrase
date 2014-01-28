@@ -54,6 +54,8 @@ Give it a whirl and send some pull requests! Inspired by [Phrase][1] and a
 Usage
 -----
 
+*Note:* Currently only deployed as `1.0.0-SNAPSHOT` to Sonatype. Adjust the following accordingly.
+
 Apply the plugin in your `build.gradle`:
 ```groovy
 buildscript {
