@@ -40,7 +40,7 @@ Example.java:34: error: cannot find symbol
   symbol:   method other_name(String)
   location: class Phrase_greeting
 ```
-Build failures instead of runtime crashes!
+Build failures instead of runtime crashes! :thumbsup: :thumbsup: :thumbsup:
 
 
 
