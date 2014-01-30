@@ -1,4 +1,4 @@
-package com.example.paraphrase.simple;
+package com.example.paraphrase;
 
 import android.app.Activity;
 import android.os.Bundle;
