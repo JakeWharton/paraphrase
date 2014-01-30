@@ -1,4 +1,5 @@
 <resources>
+  <!-- This is a comment. Hopefully it makes it to the Javadoc someday! -->
   <string name="simple_test">The {quick} brown {fox} jumps over the {lazy} {dog}.</string>
   <string name="non_matching">A man, a plan, a canal. Panama.</string>
 </resources>
