@@ -29,7 +29,7 @@ import static com.android.SdkConstants.TAG_ITEM;
 
 // Mostly stolen from com.android.ide.common.res2.ValueResourceParser2
 final class ValueResourceParser {
-  static List<ResourceItem> parse(File file) throws MergingException {
+  static List<Phrase> parse(File file) throws MergingException {
     return new ValueResourceParser(file).parseFile();
   }
 
@@ -45,7 +45,7 @@ final class ValueResourceParser {
    *
    * @throws MergingException if a merging exception happens
    */
-  private @NonNull List<ResourceItem> parseFile() throws MergingException {
+  private @NonNull List<Phrase> parseFile() throws MergingException {
     Document document = parseDocument(file);
 
     // get the root node
@@ -57,22 +57,32 @@ final class ValueResourceParser {
 
     final int count = nodes.getLength();
     // list containing the result
-    List<ResourceItem> resources = Lists.newArrayListWithExpectedSize(count);
+    List<Phrase> phrases = Lists.newArrayListWithExpectedSize(count);
+    // string that contains the documentation for the next item
+    String nextDocumentation = null;
 
     for (int i = 0, n = nodes.getLength(); i < n; i++) {
       Node node = nodes.item(i);
 
-      if (node.getNodeType() != Node.ELEMENT_NODE) {
-        continue;
-      }
+      if (node.getNodeType() == Node.COMMENT_NODE) {
+        nextDocumentation = node.getTextContent(); //TODO validate?
+      } else if (node.getNodeType() == Node.ELEMENT_NODE) {
+        String documentation = nextDocumentation;
+        //we are in a new item, so let's clear the next documentation value
+        //nextDocumentation = null;
 
-      ResourceItem resource = getResource(node);
-      if (resource != null) {
-        resources.add(resource);
+        ResourceItem resource = getResource(node);
+        if (resource != null && ResourceType.STRING.equals(resource.getType())) {
+          String name = resource.getName(); //TODO validate?
+          String value = resource.getValueText();
+          if (value != null && Phrase.isPhrase(value)) {
+            phrases.add(Phrase.from(name, documentation, value));
+          }
+        }
       }
     }
 
-    return resources;
+    return phrases;
   }
 
   private static Document parseDocument(File file) throws MergingException {
