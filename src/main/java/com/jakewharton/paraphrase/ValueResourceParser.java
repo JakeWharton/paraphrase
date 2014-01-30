@@ -68,8 +68,8 @@ final class ValueResourceParser {
         nextDocumentation = node.getTextContent(); //TODO validate?
       } else if (node.getNodeType() == Node.ELEMENT_NODE) {
         String documentation = nextDocumentation;
-        //we are in a new item, so let's clear the next documentation value
-        //nextDocumentation = null;
+        // We are in a new item, so let's clear the value of nextDocumentation.
+        nextDocumentation = null;
 
         ResourceItem resource = getResource(node);
         if (resource != null && ResourceType.STRING.equals(resource.getType())) {
