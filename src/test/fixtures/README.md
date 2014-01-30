@@ -1,4 +1,4 @@
 Test Fixtures
 =============
 
-See `ParaphrasePluginTest` for descriptions of what each fixture demonstrates.
+See `FixtureIntegrationTest` for descriptions of what each fixture demonstrates.
