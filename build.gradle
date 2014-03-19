@@ -18,9 +18,9 @@ dependencies {
 
   compile gradleApi()
   compile localGroovy()
-  compile 'com.android.tools.build:gradle:0.8.+'
+  compile 'com.android.tools.build:gradle:0.9.+'
   compile 'com.squareup:javawriter:2.4.0'
-  compile 'com.google.guava:guava:16.0'
+  compile 'com.google.guava:guava:16.0.1'
 }
 
 group = 'com.jakewharton.paraphrase'
