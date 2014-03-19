@@ -14,8 +14,8 @@ final class Phrase {
     return PHRASE.matcher(string).find();
   }
 
-  static Phrase from(String name, String string) {
-    return new Phrase(name, null /* TODO */, string, tokensFrom(string));
+  static Phrase from(String name, String documentation, String string) {
+    return new Phrase(name, documentation, string, tokensFrom(string));
   }
 
   static List<String> tokensFrom(String string) {
