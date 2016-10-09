@@ -1,5 +1,10 @@
 <resources>
   <!-- This is a comment. Hopefully it makes it to the Javadoc someday! -->
   <string name="simple_test">The {quick} brown {fox} jumps over the {lazy} {dog}.</string>
+  <!-- This is a comment for a non matching string and should be ignored! -->
   <string name="non_matching">A man, a plan, a canal. Panama.</string>
+  <!-- <string name="ignored">This shouldn't end up in the Javadoc either.</string> -->
+  <!-- Should we allow comments -->
+  <!-- that use more than one line? -->
+  <string name="haha">{equals}</string>
 </resources>
