@@ -1,6 +1,8 @@
 Paraphrase
 ==========
 
+DEPRECATED! Use https://github.com/cashapp/paraphrase instead!
+
 An experimental Gradle plugin which generates compile-safe format string builders.
 
 **Don't** write your format strings like this: :thumbsdown:
